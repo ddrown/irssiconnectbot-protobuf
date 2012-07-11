@@ -1,0 +1,10 @@
+Source: protobuf
+Section: shells
+Priority: optional
+Maintainer: Dan Drown <dan-android@drown.org>
+Package: protobuf-devel
+Version: 2.4.1
+Architecture: arm
+Depends: linker
+Description: Protocol Buffers are a way of encoding structured data in an efficient
+ yet extensible format.
