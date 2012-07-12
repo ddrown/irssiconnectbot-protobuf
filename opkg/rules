@@ -7,8 +7,8 @@ case "$1" in
   build)
     # need protoc on the build host
     protoc=`which protoc`
-    ./configure --host=arm-linux --prefix=/data/data/org.woltage.irssiconnectbot \
-      CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/data/data/org.woltage.irssiconnectbot/bin/linker" \
+    ./configure --host=arm-linux --prefix=/data/data/org.woltage.irssiconnectbot/files \
+      CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/data/data/org.woltage.irssiconnectbot/files/bin/linker" \
       LIBS=-lm \
       --with-protoc="$protoc"
     make
@@ -23,13 +23,13 @@ case "$1" in
     # -devel package
     DEVEL_DESTDIR=~/tmp/$PACKAGE-devel
     rm -rf $DEVEL_DESTDIR
-    mkdir -p $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/lib
-    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/lib/*.{a,la,so} $DESTDIR/data/data/org.woltage.irssiconnectbot/lib/pkgconfig $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/lib
-    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/include $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot
-    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/bin $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/bin
+    mkdir -p $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib
+    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/*.{a,la,so} $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/pkgconfig $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib
+    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/include $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files
+    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/bin $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/bin
     mkdir -p $DEVEL_DESTDIR/CONTROL
     cp opkg/control-devel $DEVEL_DESTDIR/CONTROL/control
-    opkg-build -o 0 -g 0 -b data/data/org.woltage.irssiconnectbot $DEVEL_DESTDIR `cd .. ; pwd`
+    opkg-build -o 0 -g 0 -b data/data/org.woltage.irssiconnectbot/files $DEVEL_DESTDIR `cd .. ; pwd`
     ;;
     
   clean)
