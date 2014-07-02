@@ -9,7 +9,7 @@ case "$1" in
     protoc=`which protoc`
     ./configure --host=arm-linux --prefix=/data/data/org.woltage.irssiconnectbot/files \
       CC=agcc CXX=ag++ LDFLAGS="-Wl,-dynamic-linker,/data/data/org.woltage.irssiconnectbot/files/bin/linker" \
-      LIBS=-lm \
+      LIBS=-lm --disable-shared \
       --with-protoc="$protoc"
     make
     ;;
@@ -24,7 +24,7 @@ case "$1" in
     DEVEL_DESTDIR=~/tmp/$PACKAGE-devel
     rm -rf $DEVEL_DESTDIR
     mkdir -p $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib
-    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/*.{a,la,so} $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/pkgconfig $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib
+    mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/*.{a,la} $DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib/pkgconfig $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/lib
     mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/include $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files
     mv $DESTDIR/data/data/org.woltage.irssiconnectbot/files/bin $DEVEL_DESTDIR/data/data/org.woltage.irssiconnectbot/files/bin
     mkdir -p $DEVEL_DESTDIR/CONTROL
